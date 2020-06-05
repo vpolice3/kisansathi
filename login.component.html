@@ -1,0 +1,90 @@
+<div class="container">
+  <div class="img" class="col-lg-8">
+    <img src="assets\img\homepageimage.PNG" style="width: 470px; margin-left: 30%;" />
+  </div>
+  <div class="login-content" class="col-lg-8" style="margin-left:40%; padding-top: 7%; margin-right: 20%;">
+    <div class="main-div">
+      <mat-card fxFlex="100">
+        <img src="./assets/img/user.jpg" style="margin-left: 20%;" width="50%"/>
+        <mat-toolbar class="tool">Login</mat-toolbar>
+        <form
+          [formGroup]="angForm"
+          novalidate
+          fxLayoutAlign="stretch"
+          fxLayout="column"
+          class="login-form"
+          (ngSubmit)="login()"
+        >
+          <div class="form-group">
+            <label class="lb"
+              ><b><i>UserName</i></b></label
+            >
+            <input
+              class="form-control"
+              style="width: 90%;" 
+              formControlName="username"
+              type="text"
+              placeholder="  Enter Your Username"
+              [(ngModel)]="user.username"
+            />
+          </div>
+          <div
+            *ngIf="
+              angForm.controls['username'].invalid &&
+              (angForm.controls['username'].dirty ||
+                angForm.controls['username'].touched)
+            "
+            class="alert"
+          >
+            <div *ngIf="angForm.controls['username'].errors.required">
+              Username is required.
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="lb"
+              ><b><i>Password</i></b></label
+            >
+            <input
+              class="form-control"
+              style="width: 90%;"
+              formControlName="password"
+              type="password"
+              placeholder="  Enter Your Password"
+              [(ngModel)]="user.password"
+            />
+          </div>
+          <div
+            *ngIf="
+              angForm.controls['password'].invalid &&
+              (angForm.controls['password'].dirty ||
+                angForm.controls['password'].touched)
+            "
+            class="alert"
+          >
+            <div *ngIf="angForm.controls['password'].errors.required">
+              Password is required.
+            </div>
+          </div>
+          <button
+            class="btn btn-success"
+            (click)="login()"
+            [disabled]="!angForm.valid"
+          >
+            Login
+          </button>
+          <a
+            class="nav-link"
+            [routerLink]="['/requestreset']"
+            style="margin-right: 10%;"
+            >ForgotPassword</a
+          >
+        </form>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
+
+
